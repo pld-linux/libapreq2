@@ -1,4 +1,5 @@
 Summary:	Apache Request Library
+Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
 %define		_devel	02
 Version:	2.02
@@ -8,8 +9,8 @@ Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}_%{_devel}-dev.tar.gz
 # Source0-md5:	dbca30cd45ec88c642ef38ae6d229865
 URL:		http://httpd.apache.org/apreq/
-BuildRequires:	apache-mod_perl >= 2.0
 BuildRequires:	apache-devel >= 2.0.46
+BuildRequires:	apache-mod_perl >= 2.0
 BuildRequires:	perl-ExtUtils-XSBuilder >= 0.23
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -20,6 +21,13 @@ for parsing HTTP cookies, query-strings and POST data.
 Version 2 of libapreq is an improved codebase designed around APR and
 Apache-2's input filter API.
 
+%description -l pl
+libapreq to bezpieczna, zgodna ze standardami, wysoko wydajna
+biblioteka s³u¿±ca do przetwarzania ciasteczek HTTP, ³añcuchów zapytañ
+oraz danych POST.
+
+Wersja 2 libapreq to ulepszony kod opracowany na bazie APR i API
+filtra wej¶ciowego Apache 2.
 
 %package devel
 Summary:	libapreq2 header files
@@ -31,7 +39,7 @@ Requires:	%{name} = %{version}
 libapreq2 header files.
 
 %description devel -l pl
-Pliki nag³ówkowe biblioteki libapreq.
+Pliki nag³ówkowe biblioteki libapreq2.
 
 # %package static
 # Summary:	libapreq static library
@@ -47,11 +55,15 @@ Pliki nag³ówkowe biblioteki libapreq.
 
 %package -n perl-%{name}
 Summary:	Perl APIs for libapreq2 - Apache::Request and Apache::Cookie
+Summary(pl):	Perlowe API dla libapreq2 - Apache::Request i Apache::Cookie
 Group:		Development/Languages/Perl
 Conflicts:	perl-libapreq
 
 %description -n perl-%{name}
 Perl APIs for libapreq2 - Apache::Request and Apache::Cookie.
+
+%description -n perl-%{name} -l pl
+Perlowe API dla libapreq2 - Apache::Request i Apache::Cookie.
 
 %prep
 %setup -q -n %{name}-%{version}-dev
@@ -59,9 +71,8 @@ Perl APIs for libapreq2 - Apache::Request and Apache::Cookie.
 %build
 %configure \
 	--enable-perl-glue
-cd src
-%{__make}
-cd ..
+
+%{__make} -C src
 
 cd glue/perl
 %{__perl} Makefile.PL \
@@ -74,13 +85,11 @@ cd ../..
 %install
 rm -rf $RPM_BUILD_ROOT
 
-cd src
-%{__make} install \
+%{__make} -C src install \
 	DESTDIR=$RPM_BUILD_ROOT
-cd ../glue/perl
-%{__make} install \
+
+%{__make} -C glue/perl install \
 	DESTDIR=$RPM_BUILD_ROOT
-cd ../..
 
 %clean
 rm -rf $RPM_BUILD_ROOT

@@ -3,13 +3,13 @@
 Summary:	Apache Request Library
 Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
-%define	_devel	04
-Version:	2.03
-Release:	0.%{_devel}.5.1
+%define	_devel	03
+Version:	2.04
+Release:	0.%{_devel}.1
 License:	Apache Group
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}_%{_devel}-dev.tar.gz
-# Source0-md5:	18cefa860f15812ed35c5e1eb52f9a0a
+# Source0-md5:	1f5dd762c877b716f3774d502f575196
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
 BuildRequires:	apache >= 2.0.46
@@ -135,8 +135,12 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorarch}/Apache/*.pm
 %dir %{perl_vendorarch}/auto/Apache/Cookie
 %dir %{perl_vendorarch}/auto/Apache/Request
+%dir %{perl_vendorarch}/auto/Apache/Upload
 %{perl_vendorarch}/auto/Apache/Cookie/Cookie.bs
 %{perl_vendorarch}/auto/Apache/Request/Request.bs
+%{perl_vendorarch}/auto/Apache/Upload/Upload.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/Apache/Cookie/Cookie.so
 %attr(755,root,root) %{perl_vendorarch}/auto/Apache/Request/Request.so
-%{_mandir}/man3/Apache*
+%attr(755,root,root) %{perl_vendorarch}/auto/Apache/Upload/Upload.so
+# TODO: generate these manually; Makefile.PL (and overall logic) is broken
+#%{_mandir}/man3/Apache*

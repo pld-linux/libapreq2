@@ -2,13 +2,13 @@
 Summary:	Apache Request Library
 Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
-%define		_devel	02
-Version:	2.02
+%define	_devel	04
+Version:	2.03
 Release:	0.%{_devel}.3
 License:	Apache Group
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}_%{_devel}-dev.tar.gz
-# Source0-md5:	dbca30cd45ec88c642ef38ae6d229865
+# Source0-md5:	18cefa860f15812ed35c5e1eb52f9a0a
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	apache-devel >= 2.0.46
 BuildRequires:	apache-mod_perl >= 1.99

@@ -86,7 +86,7 @@ cd glue/perl
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
 %{__make} \
-	OPTIMIZE="%{rpmcflags}"
+	OPTIMIZE="-fPIC %{rpmcflags}"
 cd ../..
 # TODO: mod_apreq
 

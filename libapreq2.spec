@@ -1,10 +1,11 @@
 %include	/usr/lib/rpm/macros.perl
+%define	apxs	/usr/sbin/apxs
 Summary:	Apache Request Library
 Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
 %define	_devel	04
 Version:	2.03
-Release:	0.%{_devel}.2
+Release:	0.%{_devel}.3
 License:	Apache Group
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}_%{_devel}-dev.tar.gz
@@ -12,6 +13,7 @@ Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}_%{_devel}-
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	apache-devel >= 2.0.46
 BuildRequires:	apache-mod_perl >= 1.99
+BuildRequires:	%{apxs}
 BuildRequires:	perl-ExtUtils-XSBuilder >= 0.23
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

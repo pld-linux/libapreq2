@@ -10,7 +10,7 @@ Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}_%{_devel}-
 # Source0-md5:	dbca30cd45ec88c642ef38ae6d229865
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	apache-devel >= 2.0.46
-BuildRequires:	apache-mod_perl >= 2.0
+BuildRequires:	apache-mod_perl >= 1.99
 BuildRequires:	perl-ExtUtils-XSBuilder >= 0.23
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

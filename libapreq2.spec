@@ -4,7 +4,7 @@ Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
 %define	_devel	04
 Version:	2.03
-Release:	0.%{_devel}.1
+Release:	0.%{_devel}.2
 License:	Apache Group
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}_%{_devel}-dev.tar.gz
@@ -70,6 +70,10 @@ Perlowe API dla libapreq2 - Apache::Request i Apache::Cookie.
 %setup -q -n %{name}-%{version}-dev
 
 %build
+%{__aclocal}
+%{__autoheader}
+%{__autoconf}
+%{__automake}
 %configure \
 	--enable-perl-glue
 

@@ -77,7 +77,8 @@ Perlowe API dla libapreq2 - Apache::Request i Apache::Cookie.
 %{__autoconf}
 %{__automake}
 %configure \
-	--enable-perl-glue
+	--enable-perl-glue \
+	--with-apache2-apxs=%{apxs}
 
 %{__make} -C src
 

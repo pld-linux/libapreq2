@@ -12,6 +12,7 @@ Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}_%{_devel}-
 # Source0-md5:	18cefa860f15812ed35c5e1eb52f9a0a
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
+BuildRequires:	apache >= 2.0.46
 BuildRequires:	apache-devel >= 2.0.46
 BuildRequires:	apache-mod_perl >= 1.99
 BuildRequires:	apr-devel >= 1.0.0

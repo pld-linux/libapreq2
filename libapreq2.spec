@@ -5,15 +5,16 @@ Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
 %define	_devel	04
 Version:	2.03
-Release:	0.%{_devel}.5
+Release:	0.%{_devel}.5.1
 License:	Apache Group
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}_%{_devel}-dev.tar.gz
 # Source0-md5:	18cefa860f15812ed35c5e1eb52f9a0a
 URL:		http://httpd.apache.org/apreq/
+BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.46
 BuildRequires:	apache-mod_perl >= 1.99
-BuildRequires:	%{apxs}
+BuildRequires:	apr-devel >= 1.0.0
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	perl-ExtUtils-XSBuilder >= 0.23
@@ -75,6 +76,8 @@ Perlowe API dla libapreq2 - Apache::Request i Apache::Cookie.
 %setup -q -n %{name}-%{version}-dev
 
 %build
+%{__perl} -pi -e "s:apr-config:apr-1-config:g" acinclude.m4 Makefile.PL
+%{__perl} -pi -e "s:apu-config:apu-1-config:g" acinclude.m4 Makefile.PL
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}

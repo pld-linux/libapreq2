@@ -14,7 +14,10 @@ URL:		http://httpd.apache.org/apreq/
 BuildRequires:	apache-devel >= 2.0.46
 BuildRequires:	apache-mod_perl >= 1.99
 BuildRequires:	%{apxs}
+BuildRequires:	autoconf >= 2.53
+BuildRequires:	automake
 BuildRequires:	perl-ExtUtils-XSBuilder >= 0.23
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -36,7 +39,7 @@ filtra wej¶ciowego Apache 2.
 Summary:	libapreq2 header files
 Summary(pl):	Pliki nag³ówkowe libapreq2
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 libapreq2 header files.
@@ -44,17 +47,17 @@ libapreq2 header files.
 %description devel -l pl
 Pliki nag³ówkowe biblioteki libapreq2.
 
-# %package static
-# Summary:	libapreq static library
-# Summary(pl):	Statyczna biblioteka libapreq
-# Group:		Development/Libraries
-# Requires:	%{name}-devel = %{version}
-# 
-# %description static
-# Static version of libapreq library.
-# 
-# %description static -l pl
-# Statyczna wersja biblioteki libapreq.
+%package static
+Summary:	libapreq2 static library
+Summary(pl):	Statyczna biblioteka libapreq2
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static version of libapreq2 library.
+
+%description static -l pl
+Statyczna wersja biblioteki libapreq2.
 
 %package -n perl-%{name}
 Summary:	Perl APIs for libapreq2 - Apache::Request and Apache::Cookie
@@ -72,6 +75,7 @@ Perlowe API dla libapreq2 - Apache::Request i Apache::Cookie.
 %setup -q -n %{name}-%{version}-dev
 
 %build
+%{__libtoolize}
 %{__aclocal}
 %{__autoheader}
 %{__autoconf}
@@ -86,7 +90,7 @@ cd glue/perl
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
 %{__make} \
-	OPTIMIZE="-fPIC %{rpmcflags}"
+	OPTIMIZE="%{rpmcflags}"
 cd ../..
 # TODO: mod_apreq
 
@@ -118,9 +122,9 @@ rm -rf $RPM_BUILD_ROOT
 #%{_mandir}/man3/libapreq.3*
 #%{_examplesdir}/%{name}-%{version}
 
-# %files static
-# %defattr(644,root,root,755)
-# %{_libdir}/*.a
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/*.a
 
 %files -n perl-%{name}
 %defattr(644,root,root,755)

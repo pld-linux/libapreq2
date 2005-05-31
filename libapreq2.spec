@@ -3,13 +3,13 @@
 Summary:	Apache Request Library
 Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
-%define	_devel	03
-Version:	2.04
-Release:	0.%{_devel}.1
+#%define	_devel	03
+Version:	2.05
+Release:	0.1
 License:	Apache Group
 Group:		Libraries
-Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}_%{_devel}-dev.tar.gz
-# Source0-md5:	1f5dd762c877b716f3774d502f575196
+Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}-dev.tar.gz
+# Source0-md5:	0985e102b6d2bc9c747a56b04a85cba6
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
 BuildRequires:	apache >= 2.0.46
@@ -88,7 +88,7 @@ Perlowe API dla libapreq2 - Apache::Request i Apache::Cookie.
 	--enable-perl-glue \
 	--with-apache2-apxs=%{apxs}
 
-%{__make} -C src
+%{__make}
 
 cd glue/perl
 %{__perl} Makefile.PL \
@@ -101,7 +101,7 @@ cd ../..
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} -C src install \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__make} -C glue/perl install \
@@ -132,15 +132,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n perl-%{name}
 %defattr(644,root,root,755)
-%{perl_vendorarch}/Apache/*.pm
-%dir %{perl_vendorarch}/auto/Apache/Cookie
-%dir %{perl_vendorarch}/auto/Apache/Request
-%dir %{perl_vendorarch}/auto/Apache/Upload
-%{perl_vendorarch}/auto/Apache/Cookie/Cookie.bs
-%{perl_vendorarch}/auto/Apache/Request/Request.bs
-%{perl_vendorarch}/auto/Apache/Upload/Upload.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/Apache/Cookie/Cookie.so
-%attr(755,root,root) %{perl_vendorarch}/auto/Apache/Request/Request.so
-%attr(755,root,root) %{perl_vendorarch}/auto/Apache/Upload/Upload.so
+%{perl_vendorarch}/Apache2/*.pm
+%dir %{perl_vendorarch}/APR
+%{perl_vendorarch}/APR/*.pm
+%dir %{perl_vendorarch}/APR/Request
+%{perl_vendorarch}/APR/Request/*
+
+%{perl_vendorarch}/auto/APR/*
+
 # TODO: generate these manually; Makefile.PL (and overall logic) is broken
-#%{_mandir}/man3/Apache*
+%{_mandir}/man3/Apache*
+%{_mandir}/man3/APR*

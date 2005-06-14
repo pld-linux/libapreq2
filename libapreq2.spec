@@ -1,3 +1,4 @@
+%bcond_without	static	# don't build static library
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
 Summary:	Apache Request Library
@@ -86,7 +87,8 @@ Perlowe API dla libapreq2 - Apache::Request i Apache::Cookie.
 %{__automake}
 %configure \
 	--enable-perl-glue \
-	--with-apache2-apxs=%{apxs}
+	--with-apache2-apxs=%{apxs} \
+	%{!?with_static:--disable-static}
 
 %{__make}
 
@@ -126,9 +128,11 @@ rm -rf $RPM_BUILD_ROOT
 #%{_mandir}/man3/libapreq.3*
 #%{_examplesdir}/%{name}-%{version}
 
+%if %{with static}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/*.a
+%endif
 
 %files -n perl-%{name}
 %defattr(644,root,root,755)

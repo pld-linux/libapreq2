@@ -6,7 +6,7 @@ Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
 #%define	_devel	03
 Version:	2.05
-Release:	0.1
+Release:	1
 License:	Apache Group
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}-dev.tar.gz

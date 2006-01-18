@@ -6,7 +6,7 @@ Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
 #%define	_devel	03
 Version:	2.05
-Release:	1
+Release:	2
 License:	Apache Group
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}-dev.tar.gz
@@ -15,7 +15,7 @@ URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
 BuildRequires:	apache >= 2.0.46
 BuildRequires:	apache-devel >= 2.0.46
-BuildRequires:	apache-mod_perl >= 1.99
+BuildRequires:	apache-mod_perl-devel >= 1.99
 BuildRequires:	apr-devel >= 1.0.0
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake

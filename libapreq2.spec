@@ -126,11 +126,7 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/APR/Request.pod
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/mod_apreq2.{a,la}
-
-CFG="$RPM_BUILD_ROOT%{_sysconfdir}/conf.d/"
-install -d $RPM_BUILD_ROOT%{_sysconfdir}
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/
-install %{SOURCE1} ${CFG}76_mod_apreq2.conf
+install -D %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/76_mod_apreq2.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -182,5 +178,5 @@ fi
 
 %files -n apache-mod_apreq2
 %defattr(644,root,root,755)
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*_mod_apreq2.conf
 %attr(755,root,root) %{_pkglibdir}/mod_apreq2.so
-%{_sysconfdir}/conf.d/76_mod_apreq2.conf

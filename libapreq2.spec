@@ -131,6 +131,14 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
+%post -n apache-mod_%{name}
+%service -q httpd restart
+
+%preun -n apache-mod_%{name}
+if [ "$1" = "0" ]; then
+	%service -q httpd restart
+fi
+
 %files
 %defattr(644,root,root,755)
 %doc CHANGES README

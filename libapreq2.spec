@@ -1,10 +1,10 @@
 %bcond_without	static	# don't build static library
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
+%define	pdir	libapreq2
 Summary:	Apache Request Library
 Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
-#%define	_devel	03
 Version:	2.07
 Release:	1
 License:	Apache Group
@@ -13,15 +13,17 @@ Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
 # Source0-md5:	6f2e5e4a14e8b190dead0fe91fc13080
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
-BuildRequires:	apache >= 2.0.46
 BuildRequires:	apache-devel >= 2.0.46
 BuildRequires:	apache-mod_perl-devel >= 1.99
 BuildRequires:	apr-devel >= 1.0.0
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	perl-ExtUtils-XSBuilder >= 0.23
 BuildRequires:	libtool
+BuildRequires:	perl-ExtUtils-XSBuilder >= 0.23
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
+%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)
 
 %description
 libapreq is a safe, standards-compliant, high-performance library used
@@ -43,6 +45,7 @@ Summary:	libapreq2 header files
 Summary(pl):	Pliki nag³ówkowe libapreq2
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	apache-devel >= 2.0
 
 %description devel
 libapreq2 header files.
@@ -77,8 +80,8 @@ Perlowe API dla libapreq2 - Apache2::Request i Apache2::Cookie.
 %package -n apache-mod_%{name}
 Summary:	Apache module mod_libapreq2
 Summary(pl):	Modu³ serwera Apache mod_libapreq2
-Group:		Development/Languages/Perl
-Requires:	apache
+Group:		Networking/Daemons
+Requires:	apache(modules-api) = %apache_modules_api
 
 %description -n apache-mod_%{name}
 Apache module mod_libapreq2.
@@ -90,8 +93,6 @@ Modu³ mod_libapreq2 do serwera Apache.
 %setup -q
 
 %build
-#%{__perl} -pi -e "s:apr-config:apr-1-config:g" acinclude.m4 Makefile.PL
-#%{__perl} -pi -e "s:apu-config:apu-1-config:g" acinclude.m4 Makefile.PL
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
@@ -121,6 +122,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C glue/perl install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/APR/Request.pod
+rm -f $RPM_BUILD_ROOT%{_pkglibdir}/mod_apreq2.{a,la}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -137,8 +141,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
 %{_includedir}/apreq2
-#%{_mandir}/man3/libapreq.3*
-#%{_examplesdir}/%{name}-%{version}
+%attr(755,root,root) %{_bindir}/apreq2-config
+%dir %{_includedir}/apache/apreq2
+%{_includedir}/apache/apreq2/apreq_module_apache2.h
 
 %if %{with static}
 %files static
@@ -162,4 +167,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n apache-mod_%{name}
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/apache/mod_apreq2.so
+%attr(755,root,root) %{_pkglibdir}/mod_apreq2.so

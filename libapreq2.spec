@@ -5,12 +5,12 @@ Summary:	Apache Request Library
 Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
 #%define	_devel	03
-Version:	2.05
-Release:	2
+Version:	2.07
+Release:	1
 License:	Apache Group
 Group:		Libraries
-Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}-dev.tar.gz
-# Source0-md5:	0985e102b6d2bc9c747a56b04a85cba6
+Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
+# Source0-md5:	
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
 BuildRequires:	apache >= 2.0.46
@@ -63,23 +63,35 @@ Static version of libapreq2 library.
 Statyczna wersja biblioteki libapreq2.
 
 %package -n perl-%{name}
-Summary:	Perl APIs for libapreq2 - Apache::Request and Apache::Cookie
-Summary(pl):	Perlowe API dla libapreq2 - Apache::Request i Apache::Cookie
+Summary:	Perl APIs for libapreq2 - Apache2::Request and Apache2::Cookie
+Summary(pl):	Perlowe API dla libapreq2 - Apache2::Request i Apache2::Cookie
 Group:		Development/Languages/Perl
 Conflicts:	perl-libapreq
 
 %description -n perl-%{name}
-Perl APIs for libapreq2 - Apache::Request and Apache::Cookie.
+Perl APIs for libapreq2 - Apache2::Request and Apache2::Cookie.
 
 %description -n perl-%{name} -l pl
-Perlowe API dla libapreq2 - Apache::Request i Apache::Cookie.
+Perlowe API dla libapreq2 - Apache2::Request i Apache2::Cookie.
+
+%package -n apache-mod_%{name}
+Summary:	Apache module mod_libapreq2
+Summary(pl):	Modu³ serwera Apache mod_libapreq2
+Group:		Development/Languages/Perl
+Requires:	apache
+
+%description -n apache-mod_%{name}
+Apache module mod_libapreq2.
+
+%description -n apache-mod_%{name} -l pl
+Modu³ mod_libapreq2 do serwera Apache
 
 %prep
-%setup -q -n %{name}-%{version}-dev
+%setup -q -n %{name}-%{version}
 
 %build
-%{__perl} -pi -e "s:apr-config:apr-1-config:g" acinclude.m4 Makefile.PL
-%{__perl} -pi -e "s:apu-config:apu-1-config:g" acinclude.m4 Makefile.PL
+#%{__perl} -pi -e "s:apr-config:apr-1-config:g" acinclude.m4 Makefile.PL
+#%{__perl} -pi -e "s:apu-config:apu-1-config:g" acinclude.m4 Makefile.PL
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
@@ -147,3 +159,8 @@ rm -rf $RPM_BUILD_ROOT
 # TODO: generate these manually; Makefile.PL (and overall logic) is broken
 %{_mandir}/man3/Apache*
 %{_mandir}/man3/APR*
+
+
+%files -n apache-mod_%{name}
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/apache/mod_apreq2.so

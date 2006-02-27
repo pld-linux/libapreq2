@@ -10,7 +10,7 @@ Release:	1
 License:	Apache Group
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
-# Source0-md5:	
+# Source0-md5:	6f2e5e4a14e8b190dead0fe91fc13080
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
 BuildRequires:	apache >= 2.0.46

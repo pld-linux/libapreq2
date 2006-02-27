@@ -6,11 +6,12 @@ Summary:	Apache Request Library
 Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
 Version:	2.07
-Release:	1
+Release:	2
 License:	Apache Group
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
 # Source0-md5:	6f2e5e4a14e8b190dead0fe91fc13080
+Source1:	apache-mod_apreq2.conf
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.46
@@ -77,17 +78,18 @@ Perl APIs for libapreq2 - Apache2::Request and Apache2::Cookie.
 %description -n perl-%{name} -l pl
 Perlowe API dla libapreq2 - Apache2::Request i Apache2::Cookie.
 
-%package -n apache-mod_%{name}
-Summary:	Apache module mod_libapreq2
-Summary(pl):	Modu³ serwera Apache mod_libapreq2
+%package -n apache-mod_apreq2
+Summary:	Apache module mod_apreq2
+Summary(pl):	Modu³ serwera Apache mod_apreq2
 Group:		Networking/Daemons
 Requires:	apache(modules-api) = %apache_modules_api
+Obsoletes:	apache-mod_libapreq2
 
-%description -n apache-mod_%{name}
-Apache module mod_libapreq2.
+%description -n apache-mod_apreq2
+Apache module mod_apreq2.
 
-%description -n apache-mod_%{name} -l pl
-Modu³ mod_libapreq2 do serwera Apache.
+%description -n apache-mod_apreq2 -l pl
+Modu³ mod_apreq2 do serwera Apache.
 
 %prep
 %setup -q
@@ -125,16 +127,21 @@ rm -rf $RPM_BUILD_ROOT
 rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/APR/Request.pod
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/mod_apreq2.{a,la}
 
+CFG="$RPM_BUILD_ROOT%{_sysconfdir}/conf.d/"
+install -d $RPM_BUILD_ROOT%{_sysconfdir}
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/
+install %{SOURCE1} ${CFG}76_mod_apreq2.conf
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%post -n apache-mod_%{name}
+%post -n apache-mod_apreq2
 %service -q httpd restart
 
-%preun -n apache-mod_%{name}
+%preun -n apache-mod_apreq2
 if [ "$1" = "0" ]; then
 	%service -q httpd restart
 fi
@@ -173,6 +180,7 @@ fi
 %{_mandir}/man3/Apache*
 %{_mandir}/man3/APR*
 
-%files -n apache-mod_%{name}
+%files -n apache-mod_apreq2
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/mod_apreq2.so
+%{_sysconfdir}/conf.d/76_mod_apreq2.conf

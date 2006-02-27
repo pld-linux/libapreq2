@@ -1,4 +1,7 @@
-%bcond_without	static	# don't build static library
+#
+# Conditional build:
+%bcond_without	static_libs	# don't build static library
+#
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
 %define	pdir	libapreq2
@@ -103,7 +106,7 @@ Modu³ mod_apreq2 do serwera Apache.
 %configure \
 	--enable-perl-glue \
 	--with-apache2-apxs=%{apxs} \
-	%{!?with_static:--disable-static}
+	%{!?with_static_libs:--disable-static}
 
 %{__make}
 
@@ -124,7 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C glue/perl install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/APR/Request.pod
+rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/APR/{Request.pod,Request/*.pod}
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/mod_apreq2.{a,la}
 install -D %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/76_mod_apreq2.conf
 
@@ -145,32 +148,33 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc CHANGES README
-%attr(755,root,root) %{_libdir}/*.so.*.*
+%attr(755,root,root) %{_libdir}/libapreq2.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.la
+%attr(755,root,root) %{_libdir}/libapreq2.so
+%{_libdir}/libapreq2.la
 %{_includedir}/apreq2
 %attr(755,root,root) %{_bindir}/apreq2-config
 %dir %{_includedir}/apache/apreq2
 %{_includedir}/apache/apreq2/apreq_module_apache2.h
 
-%if %{with static}
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%{_libdir}/libapreq2.a
 %endif
 
 %files -n perl-%{name}
 %defattr(644,root,root,755)
 %{perl_vendorarch}/Apache2/*.pm
-%dir %{perl_vendorarch}/APR
 %{perl_vendorarch}/APR/*.pm
 %dir %{perl_vendorarch}/APR/Request
-%{perl_vendorarch}/APR/Request/*
-
-%{perl_vendorarch}/auto/APR/*
+%{perl_vendorarch}/APR/Request/*.pm
+%dir %{perl_vendorarch}/auto/APR/Request
+%dir %{perl_vendorarch}/auto/APR/Request/*
+%{perl_vendorarch}/auto/APR/Request/*/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/APR/Request/*/*.so
 
 # TODO: generate these manually; Makefile.PL (and overall logic) is broken
 %{_mandir}/man3/Apache*

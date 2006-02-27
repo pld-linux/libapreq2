@@ -84,10 +84,10 @@ Requires:	apache
 Apache module mod_libapreq2.
 
 %description -n apache-mod_%{name} -l pl
-Modu³ mod_libapreq2 do serwera Apache
+Modu³ mod_libapreq2 do serwera Apache.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 #%{__perl} -pi -e "s:apr-config:apr-1-config:g" acinclude.m4 Makefile.PL
@@ -159,7 +159,6 @@ rm -rf $RPM_BUILD_ROOT
 # TODO: generate these manually; Makefile.PL (and overall logic) is broken
 %{_mandir}/man3/Apache*
 %{_mandir}/man3/APR*
-
 
 %files -n apache-mod_%{name}
 %defattr(644,root,root,755)

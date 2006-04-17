@@ -1,0 +1,2 @@
+- 2.07 [resolves CVE-2006-0042], rel 2 - renamed apache-mod_libapreq2 to apache-mod_apreq2
+- added conf file for mod_apreq2

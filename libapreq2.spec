@@ -9,7 +9,7 @@ Summary:	Apache Request Library
 Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
 Version:	2.07
-Release:	3
+Release:	4
 License:	Apache Group
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
@@ -73,7 +73,6 @@ Statyczna wersja biblioteki libapreq2.
 Summary:	Perl APIs for libapreq2 - Apache2::Request and Apache2::Cookie
 Summary(pl):	Perlowe API dla libapreq2 - Apache2::Request i Apache2::Cookie
 Group:		Development/Languages/Perl
-Conflicts:	perl-libapreq
 
 %description -n perl-%{name}
 Perl APIs for libapreq2 - Apache2::Request and Apache2::Cookie.

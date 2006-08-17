@@ -8,12 +8,12 @@
 Summary:	Apache Request Library
 Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
-Version:	2.07
-Release:	4
+Version:	2.08
+Release:	1
 License:	Apache Group
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
-# Source0-md5:	6f2e5e4a14e8b190dead0fe91fc13080
+# Source0-md5:	9fb3deec448f74c455d4ffc13846ea9f
 Source1:	apache-mod_apreq2.conf
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}

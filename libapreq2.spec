@@ -8,12 +8,14 @@
 Summary:	Apache Request Library
 Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
-Version:	2.08
-Release:	1
+%define	_rc	-rc1
+Version:	2.09
+Release:	0.%(echo %{_rc} | sed -e s/-//).1
 License:	Apache Group
 Group:		Libraries
-Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
-# Source0-md5:	9fb3deec448f74c455d4ffc13846ea9f
+#Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}%{_rc}.tar.gz
+Source0:	http://people.apache.org/~pgollucci/apreq2/%{name}-%{version}%{_rc}.tar.gz
+# Source0-md5:	fe69ccbd7198b0f7b4d6436c4d2cea12
 Source1:	apache-mod_apreq2.conf
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
@@ -94,7 +96,7 @@ Apache module mod_apreq2.
 Modu³ mod_apreq2 do serwera Apache.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}%{_rc}
 
 %build
 %{__libtoolize}
@@ -103,27 +105,17 @@ Modu³ mod_apreq2 do serwera Apache.
 %{__autoconf}
 %{__automake}
 %configure \
+	--with-mm-opts="INSTALLDIRS=vendor" \
 	--enable-perl-glue \
 	--with-apache2-apxs=%{apxs} \
 	%{!?with_static_libs:--disable-static}
 
 %{__make}
 
-cd glue/perl
-%{__perl} Makefile.PL \
-	INSTALLDIRS=vendor
-%{__make} \
-	OPTIMIZE="%{rpmcflags}"
-cd ../..
-# TODO: mod_apreq
-
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-%{__make} -C glue/perl install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/APR/{Request.pod,Request/*.pod}

@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
+%bcond_with	tests		# perform "make test"
 #
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
@@ -26,6 +27,10 @@ BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	perl-ExtUtils-XSBuilder >= 0.23
+%if %{with tests}
+BuildRequires:	perl-libwww
+BuildRequires:	apache-mod_mime
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
@@ -111,6 +116,8 @@ Modu³ mod_apreq2 do serwera Apache.
 	%{!?with_static_libs:--disable-static}
 
 %{__make}
+
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT

@@ -9,14 +9,13 @@
 Summary:	Apache Request Library
 Summary(pl):	Biblioteka ¿±dañ Apache
 Name:		libapreq2
-%define	_rc	-rc1
 Version:	2.09
-Release:	0.%(echo %{_rc} | sed -e s/-//).1
-License:	Apache Group
+Release:	1
+License:	Apache 2.0
 Group:		Libraries
-#Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}%{_rc}.tar.gz
-Source0:	http://people.apache.org/~pgollucci/apreq2/%{name}-%{version}%{_rc}.tar.gz
-# Source0-md5:	fe69ccbd7198b0f7b4d6436c4d2cea12
+#Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
+Source0:	http://people.apache.org/~pgollucci/apreq2/%{name}-%{version}.tar.gz
+# Source0-md5:	3cd98755da8a8431ef35a47461ad67d7
 Source1:	apache-mod_apreq2.conf
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
@@ -28,8 +27,8 @@ BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	perl-ExtUtils-XSBuilder >= 0.23
 %if %{with tests}
-BuildRequires:	perl-libwww
 BuildRequires:	apache-mod_mime
+BuildRequires:	perl-libwww
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -101,7 +100,7 @@ Apache module mod_apreq2.
 Modu³ mod_apreq2 do serwera Apache.
 
 %prep
-%setup -q -n %{name}-%{version}%{_rc}
+%setup -q
 
 %build
 %{__libtoolize}

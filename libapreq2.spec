@@ -7,7 +7,7 @@
 %define	apxs	/usr/sbin/apxs
 %define	pdir	libapreq2
 Summary:	Apache Request Library
-Summary(pl):	Biblioteka ø±daÒ Apache
+Summary(pl.UTF-8):   Biblioteka ≈ºƒÖda≈Ñ Apache
 Name:		libapreq2
 Version:	2.09
 Release:	1
@@ -42,17 +42,17 @@ for parsing HTTP cookies, query-strings and POST data.
 Version 2 of libapreq is an improved codebase designed around APR and
 Apache-2's input filter API.
 
-%description -l pl
+%description -l pl.UTF-8
 libapreq to bezpieczna, zgodna ze standardami, wysoko wydajna
-biblioteka s≥uø±ca do przetwarzania ciasteczek HTTP, ≥aÒcuchÛw zapytaÒ
+biblioteka s≈Çu≈ºƒÖca do przetwarzania ciasteczek HTTP, ≈Ça≈Ñcuch√≥w zapyta≈Ñ
 oraz danych POST.
 
 Wersja 2 libapreq to ulepszony kod opracowany na bazie APR i API
-filtra wej∂ciowego Apache 2.
+filtra wej≈õciowego Apache 2.
 
 %package devel
 Summary:	libapreq2 header files
-Summary(pl):	Pliki nag≥Ûwkowe libapreq2
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe libapreq2
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	apache-devel >= 2.0
@@ -60,35 +60,35 @@ Requires:	apache-devel >= 2.0
 %description devel
 libapreq2 header files.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe biblioteki libapreq2.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe biblioteki libapreq2.
 
 %package static
 Summary:	libapreq2 static library
-Summary(pl):	Statyczna biblioteka libapreq2
+Summary(pl.UTF-8):   Statyczna biblioteka libapreq2
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static version of libapreq2 library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna wersja biblioteki libapreq2.
 
 %package -n perl-%{name}
 Summary:	Perl APIs for libapreq2 - Apache2::Request and Apache2::Cookie
-Summary(pl):	Perlowe API dla libapreq2 - Apache2::Request i Apache2::Cookie
+Summary(pl.UTF-8):   Perlowe API dla libapreq2 - Apache2::Request i Apache2::Cookie
 Group:		Development/Languages/Perl
 
 %description -n perl-%{name}
 Perl APIs for libapreq2 - Apache2::Request and Apache2::Cookie.
 
-%description -n perl-%{name} -l pl
+%description -n perl-%{name} -l pl.UTF-8
 Perlowe API dla libapreq2 - Apache2::Request i Apache2::Cookie.
 
 %package -n apache-mod_apreq2
 Summary:	Apache module mod_apreq2
-Summary(pl):	Modu≥ serwera Apache mod_apreq2
+Summary(pl.UTF-8):   Modu≈Ç serwera Apache mod_apreq2
 Group:		Networking/Daemons
 Requires:	apache(modules-api) = %apache_modules_api
 Obsoletes:	apache-mod_libapreq2
@@ -96,8 +96,8 @@ Obsoletes:	apache-mod_libapreq2
 %description -n apache-mod_apreq2
 Apache module mod_apreq2.
 
-%description -n apache-mod_apreq2 -l pl
-Modu≥ mod_apreq2 do serwera Apache.
+%description -n apache-mod_apreq2 -l pl.UTF-8
+Modu≈Ç mod_apreq2 do serwera Apache.
 
 %prep
 %setup -q

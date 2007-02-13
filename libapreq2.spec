@@ -7,7 +7,7 @@
 %define	apxs	/usr/sbin/apxs
 %define	pdir	libapreq2
 Summary:	Apache Request Library
-Summary(pl.UTF-8):   Biblioteka żądań Apache
+Summary(pl.UTF-8):	Biblioteka żądań Apache
 Name:		libapreq2
 Version:	2.09
 Release:	1
@@ -52,7 +52,7 @@ filtra wejściowego Apache 2.
 
 %package devel
 Summary:	libapreq2 header files
-Summary(pl.UTF-8):   Pliki nagłówkowe libapreq2
+Summary(pl.UTF-8):	Pliki nagłówkowe libapreq2
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	apache-devel >= 2.0
@@ -65,7 +65,7 @@ Pliki nagłówkowe biblioteki libapreq2.
 
 %package static
 Summary:	libapreq2 static library
-Summary(pl.UTF-8):   Statyczna biblioteka libapreq2
+Summary(pl.UTF-8):	Statyczna biblioteka libapreq2
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -77,7 +77,7 @@ Statyczna wersja biblioteki libapreq2.
 
 %package -n perl-%{name}
 Summary:	Perl APIs for libapreq2 - Apache2::Request and Apache2::Cookie
-Summary(pl.UTF-8):   Perlowe API dla libapreq2 - Apache2::Request i Apache2::Cookie
+Summary(pl.UTF-8):	Perlowe API dla libapreq2 - Apache2::Request i Apache2::Cookie
 Group:		Development/Languages/Perl
 
 %description -n perl-%{name}
@@ -88,7 +88,7 @@ Perlowe API dla libapreq2 - Apache2::Request i Apache2::Cookie.
 
 %package -n apache-mod_apreq2
 Summary:	Apache module mod_apreq2
-Summary(pl.UTF-8):   Moduł serwera Apache mod_apreq2
+Summary(pl.UTF-8):	Moduł serwera Apache mod_apreq2
 Group:		Networking/Daemons
 Requires:	apache(modules-api) = %apache_modules_api
 Obsoletes:	apache-mod_libapreq2

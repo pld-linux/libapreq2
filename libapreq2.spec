@@ -10,7 +10,7 @@ Summary:	Apache Request Library
 Summary(pl.UTF-8):	Biblioteka żądań Apache
 Name:		libapreq2
 Version:	2.09
-Release:	1
+Release:	2
 License:	Apache 2.0
 Group:		Libraries
 #Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
@@ -19,8 +19,9 @@ Source0:	http://people.apache.org/~pgollucci/apreq2/%{name}-%{version}.tar.gz
 Source1:	apache-mod_apreq2.conf
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
+BuildRequires:	apache-base >= 2.0.46
 BuildRequires:	apache-devel >= 2.0.46
-BuildRequires:	apache-mod_perl-devel >= 1.99
+BuildRequires:	apache-mod_perl-devel >= 1:2
 BuildRequires:	apr-devel >= 1.0.0
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake

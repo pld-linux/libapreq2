@@ -10,7 +10,7 @@ Summary:	Apache Request Library
 Summary(pl.UTF-8):	Biblioteka żądań Apache
 Name:		libapreq2
 Version:	2.09
-Release:	2
+Release:	3
 License:	Apache 2.0
 Group:		Libraries
 #Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz

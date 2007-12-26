@@ -33,8 +33,8 @@ BuildRequires:	perl-libwww
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		pkgconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)/conf.d
-%define		pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
+%define		apacheconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)/conf.d
+%define		apachelibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
 
 %description
 libapreq is a safe, standards-compliant, high-performance library used
@@ -126,8 +126,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/APR/{Request.pod,Request/*.pod}
-rm -f $RPM_BUILD_ROOT%{pkglibdir}/mod_apreq2.{a,la}
-install -D %{SOURCE1} $RPM_BUILD_ROOT%{pkgconfdir}/76_mod_apreq2.conf
+rm -f $RPM_BUILD_ROOT%{apachelibdir}/mod_apreq2.{a,la}
+install -D %{SOURCE1} $RPM_BUILD_ROOT%{apacheconfdir}/76_mod_apreq2.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -180,5 +180,5 @@ fi
 
 %files -n apache-mod_apreq2
 %defattr(644,root,root,755)
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{pkgconfdir}/*_mod_apreq2.conf
-%attr(755,root,root) %{pkglibdir}/mod_apreq2.so
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{apacheconfdir}/*_mod_apreq2.conf
+%attr(755,root,root) %{apachelibdir}/mod_apreq2.so

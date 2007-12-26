@@ -10,7 +10,7 @@ Summary:	Apache Request Library
 Summary(pl.UTF-8):	Biblioteka żądań Apache
 Name:		libapreq2
 Version:	2.09
-Release:	4
+Release:	5
 License:	Apache 2.0
 Group:		Libraries
 #Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
@@ -33,8 +33,8 @@ BuildRequires:	perl-libwww
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
-%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)
+%define		pkgconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)/conf.d
+%define		pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
 
 %description
 libapreq is a safe, standards-compliant, high-performance library used
@@ -126,8 +126,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/APR/{Request.pod,Request/*.pod}
-rm -f $RPM_BUILD_ROOT%{_pkglibdir}/mod_apreq2.{a,la}
-install -D %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/76_mod_apreq2.conf
+rm -f $RPM_BUILD_ROOT%{pkglibdir}/mod_apreq2.{a,la}
+install -D %{SOURCE1} $RPM_BUILD_ROOT%{pkgconfdir}/76_mod_apreq2.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -180,5 +180,5 @@ fi
 
 %files -n apache-mod_apreq2
 %defattr(644,root,root,755)
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*_mod_apreq2.conf
-%attr(755,root,root) %{_pkglibdir}/mod_apreq2.so
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{pkgconfdir}/*_mod_apreq2.conf
+%attr(755,root,root) %{pkglibdir}/mod_apreq2.so

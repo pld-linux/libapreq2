@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	Biblioteka żądań Apache
 Name:		libapreq2
 Version:	2.12
 Release:	2
-License:	Apache 2.0
+License:	Apache v2.0
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
 # Source0-md5:	76e2acde0d82246dea6f2565f3746eec
@@ -26,8 +26,10 @@ BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	perl-ExtUtils-XSBuilder >= 0.23
+BuildRequires:	rpm-perlprov
 %if %{with tests}
 BuildRequires:	apache-mod_mime
+BuildRequires:	perl-Apache-Test
 BuildRequires:	perl-libwww
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

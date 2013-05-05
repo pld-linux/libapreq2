@@ -9,12 +9,12 @@
 Summary:	Apache Request Library
 Summary(pl.UTF-8):	Biblioteka żądań Apache
 Name:		libapreq2
-Version:	2.12
-Release:	3
+Version:	2.13
+Release:	1
 License:	Apache v2.0
 Group:		Libraries
 Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
-# Source0-md5:	76e2acde0d82246dea6f2565f3746eec
+# Source0-md5:	c11fb0861aa84dcc6cd0f0798b045eee
 Source1:	apache-mod_apreq2.conf
 URL:		http://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}

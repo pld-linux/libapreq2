@@ -1,0 +1,11 @@
+--- libapreq2-2.13/configure.ac~	2010-11-25 20:11:28.000000000 +0100
++++ libapreq2-2.13/configure.ac	2013-05-05 19:34:55.905616507 +0200
+@@ -27,7 +27,7 @@
+ AM_MAINTAINER_MODE
+ 
+ dnl Checks for header files.
+-AM_CONFIG_HEADER(include/apreq_config.h)
++AC_CONFIG_HEADERS(include/apreq_config.h)
+ dnl Checks for typedefs, structures, and compiler characteristics.
+ dnl Checks for library functions.
+ 

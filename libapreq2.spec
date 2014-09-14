@@ -176,7 +176,6 @@ fi
 %{perl_vendorarch}/APR/Request/*.pm
 %dir %{perl_vendorarch}/auto/APR/Request
 %dir %{perl_vendorarch}/auto/APR/Request/*
-%{perl_vendorarch}/auto/APR/Request/*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/APR/Request/*/*.so
 
 # TODO: generate these manually; Makefile.PL (and overall logic) is broken

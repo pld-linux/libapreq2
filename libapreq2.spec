@@ -5,7 +5,6 @@
 
 %define		apxs	/usr/sbin/apxs
 %define		pdir	libapreq2
-%include	/usr/lib/rpm/macros.perl
 Summary:	Apache Request Library
 Summary(pl.UTF-8):	Biblioteka żądań Apache
 Name:		libapreq2

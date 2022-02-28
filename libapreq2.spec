@@ -8,15 +8,15 @@
 Summary:	Apache Request Library
 Summary(pl.UTF-8):	Biblioteka żądań Apache
 Name:		libapreq2
-Version:	2.13
-Release:	11
+Version:	2.16
+Release:	1
 License:	Apache v2.0
 Group:		Libraries
-Source0:	http://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
-# Source0-md5:	c11fb0861aa84dcc6cd0f0798b045eee
+Source0:	https://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
+# Source0-md5:	c0f4fbeee7514ea22a038933d0075f8e
 Source1:	apache-mod_apreq2.conf
 Patch0:		am.patch
-URL:		http://httpd.apache.org/apreq/
+URL:		https://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
 BuildRequires:	apache-base >= 2.0.46
 BuildRequires:	apache-devel >= 2.0.46
@@ -174,7 +174,14 @@ fi
 %dir %{perl_vendorarch}/APR/Request
 %{perl_vendorarch}/APR/Request/*.pm
 %dir %{perl_vendorarch}/auto/APR/Request
-%dir %{perl_vendorarch}/auto/APR/Request/*
+%dir %{perl_vendorarch}/auto/APR/Request/Apache2
+%dir %{perl_vendorarch}/auto/APR/Request/CGI
+%dir %{perl_vendorarch}/auto/APR/Request/Cookie
+%dir %{perl_vendorarch}/auto/APR/Request/Error
+%dir %{perl_vendorarch}/auto/APR/Request/Hook
+%dir %{perl_vendorarch}/auto/APR/Request/Param
+%dir %{perl_vendorarch}/auto/APR/Request/Parser
+%attr(755,root,root) %{perl_vendorarch}/auto/APR/Request/*.so
 %attr(755,root,root) %{perl_vendorarch}/auto/APR/Request/*/*.so
 
 # TODO: generate these manually; Makefile.PL (and overall logic) is broken

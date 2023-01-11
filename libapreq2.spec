@@ -95,7 +95,7 @@ Summary:	Apache module mod_apreq2
 Summary(pl.UTF-8):	Moduł serwera Apache mod_apreq2
 Group:		Networking/Daemons
 Requires:	apache(modules-api) = %apache_modules_api
-Obsoletes:	apache-mod_libapreq2
+Obsoletes:	apache-mod_libapreq2 < 2.07-2
 
 %description -n apache-mod_apreq2
 Apache module mod_apreq2.

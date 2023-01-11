@@ -29,6 +29,7 @@ BuildRequires:	perl-Apache-Test
 BuildRequires:	perl-ExtUtils-XSBuilder >= 0.23
 BuildRequires:	perl-mod_perl
 BuildRequires:	rpm-perlprov
+BuildRequires:	rpmbuild(macros) >= 1.745
 %if %{with tests}
 BuildRequires:	apache-mod_mime
 BuildRequires:	perl-libwww

@@ -16,6 +16,7 @@ Source0:	https://www.apache.org/dist/httpd/libapreq/%{name}-%{version}.tar.gz
 # Source0-md5:	41cd2091aa5b5560858566a74b1346f2
 Source1:	apache-mod_apreq2.conf
 Patch0:		am.patch
+Patch1:		types.patch
 URL:		https://httpd.apache.org/apreq/
 BuildRequires:	%{apxs}
 BuildRequires:	apache-base >= 2.0.46
@@ -106,6 +107,7 @@ Moduł mod_apreq2 do serwera Apache.
 %prep
 %setup -q
 %patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %{__libtoolize}
